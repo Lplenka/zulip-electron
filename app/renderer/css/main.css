@@ -373,3 +373,18 @@ body.container-layout header #logo {
     text-align: center;
     color: #c71212;
 }
+
+.close {
+    background: transparent url('../img/close.png') no-repeat 4px 4px;
+    background-size: 24px 24px;
+    cursor: pointer;
+    display: inline-block;
+    height: 32px;
+    position: absolute;
+    right: 6px;
+    text-indent: -10000px;
+    top: 6px;
+    width: 32px;
+    z-index: 1;
+    -webkit-app-region: no-drag;
+}

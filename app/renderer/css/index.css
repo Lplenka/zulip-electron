@@ -1,0 +1,155 @@
+/*CSS for loader*/
+.loader {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     margin: -100px 0px 0px -100px;
+}
+
+
+/*CSS from nodemodules/electron-tabs/electron-tabs.css */
+.etabs-tabgroup {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: red;
+    width: 60px;
+    cursor: default;
+    font: caption;
+    font-size: 14px;
+    z-index: 100;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.etabs-tabs {
+    float: left;
+    height: 100%;
+    width: 100%;
+    background-color: #212121;
+}
+
+.etabs-tab {
+    display: none;
+    position: relative;
+    color: white;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 2px;
+    margin: 12px;
+    border-bottom: none;
+    background: #424242;
+    font: caption;
+    cursor: default;
+}
+
+/* Dragula */
+.etabs-tab.gu-mirror {
+    padding-bottom: 0;
+}
+
+.etabs-tab:first-child {
+    border-left: none;
+}
+
+.etabs-tab.visible {
+    display: inline-block;
+}
+
+.etabs-tab.active {
+    border: 2px #F5F5F5 solid;
+    border-radius: 4px;
+}
+
+.etabs-tab.flash {
+    background: linear-gradient(to bottom, rgba(255,243,170,1) 0%,rgba(255,227,37,1) 100%);
+}
+
+.etabs-buttons {
+    float: left;
+}
+
+.etabs-buttons button {
+    float: left;
+    color: #333;
+    background: none;
+    border: none;
+    font-size: 12px;
+    margin-top: 6px;
+    border-radius: 2px;
+    margin-left: 4px;
+    width: 20px;
+    text-align: center;
+    padding: 4px 0;
+}
+
+.etabs-buttons button:hover {
+    color: #eee;
+    background-color: #aaa;
+}
+
+.etabs-tab-icon {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    z-index: 200;
+    display: inline-block;
+}
+
+.etabs-tab-icon img {
+    width: 20px;
+    height: 20px;
+    margin: 7px;
+    border-radius: 4px;
+}
+
+.etabs-tab-title {
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    z-index: 100;
+    line-height: 35px;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.etabs-tab-buttons {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.etabs-tab-buttons button {
+    display: inline-block;
+    color: #333;
+    background: none;
+    border: none;
+    width: 20px;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.etabs-tab-buttons button:hover {
+    color: #eee;
+    background-color: #aaa;
+}
+
+.etabs-views {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 60px;
+    z-index: 200;
+}
+
+.etab-view {
+
+}
