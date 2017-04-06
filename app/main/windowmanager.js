@@ -10,6 +10,7 @@ const iconPath = () => {
 };
 let domainWindow;
 let aboutWindow;
+let serverWindow;
 
 function onClosed() {
 	// Dereference the window
@@ -75,12 +76,32 @@ function createAboutWindow() {
 	return aboutwin;
 }
 
+function createServerWindow() {
+	const serverwin = new electron.BrowserWindow({
+		frame: false,
+		height: 600,
+		resizable: false,
+		width: 800,
+		show: false,
+		center: true
+	});
+	const serverURL = 'file://' + path.join(__dirname, '../renderer', 'serve.html');
+	serverwin.loadURL(serverURL);
+	serverwin.on('closed', onClosed);
+
+	return serverwin;
+};
+
+// Call this window onClick addDomain in tray
+function addServers() {
+	serverWindow = createServerWindow();
+	serverWindow.show();
+}
+
 // Call this onClick About in tray
 function about() {
 	aboutWindow = createAboutWindow();
-	aboutWindow.once('ready-to-show', () => {
-		aboutWindow.show();
-	});
+	aboutWindow.show();
 }
 
 ipc.on('trayabout', event => {
@@ -94,4 +115,7 @@ ipc.on('traychangeserver', event => {
 		addDomain();
 	}
 });
-module.exports = {addDomain, about};
+
+module.exports = {
+	addDomain, about, addServers
+};

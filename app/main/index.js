@@ -17,9 +17,11 @@ const isDev = require('electron-is-dev');
 const appMenu = require('./menu');
 const {linkIsInternal, skipImages} = require('./link-helper');
 const {appUpdater} = require('./autoupdater');
+const {addDomain, about, addServers} = require('./windowmanager');
 
 const db = new JsonDB(app.getPath('userData') + '/domain.json', true, true);
 const data = db.getData('/');
+if(!data.teams) {db.push("/teams",[]);}
 
 // Adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();
@@ -49,16 +51,16 @@ const isUserAgent = 'ZulipElectron/' + app.getVersion() + ' ' + userOS();
 // Prevent window being garbage collected
 let mainWindow;
 let targetLink;
-
+let staticURL;
 // Load this url in main window
-const staticURL = 'file://' + path.join(__dirname, '../renderer', 'index.html');
+// The main page of the app which will be index or tab depending upon the data in team array
 
-const targetURL = function () {
-	if (data.domain === undefined) {
-		return staticURL;
-	}
-	return data.domain;
-};
+ if(data.teams.length > 0)
+ {
+ staticURL = 'file://' + path.join(__dirname, '../renderer', 'tab.html');
+ }else {
+ staticURL = 'file://' + path.join(__dirname, '../renderer', 'index.html');
+}
 
 function serverError(targetURL) {
 	if (targetURL.indexOf('localhost:') < 0 && data.domain) {
@@ -177,7 +179,7 @@ function createMainWindow() {
 			preload: path.join(__dirname, 'preload.js'),
 			plugins: true,
 			allowDisplayingInsecureContent: true,
-			nodeIntegration: false
+			nodeIntegration: true
 		},
 		show: false
 	});
@@ -333,4 +335,20 @@ ipc.on('new-domain', (e, domain) => {
 		serverError(domain);
 	}
 	targetLink = domain;
+});
+
+
+
+app.on('browser-window-focus', () => {
+	mainWindow.webContents.send('setFocusToActiveTab');
+});
+
+ipc.on('loadtabview', (e) => {
+	mainWindow.loadURL('file://' + path.join(__dirname, '../renderer', 'tab.html'));
+
+});
+
+ipc.on('addserver', (e) => {
+	console.log("I was called in main index ");
+addServers();
 });
