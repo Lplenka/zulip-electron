@@ -4,11 +4,11 @@
 
 ## TODO for GSoC Duration
 
-- [] Server information in Menu and Tray
-- [] Server switching functionality in Menu and Tray
-- [] Better Add Server Window
-- [] Keyboard shortcuts to switch server
-- [] Work on any Mentor suggestions
+- [ ] Server information in Menu and Tray
+- [ ] Server switching functionality in Menu and Tray
+- [ ] Better Add Server Window
+- [ ] Keyboard shortcuts to switch server
+- [ ] Work on any Mentor suggestions
 
 
 
