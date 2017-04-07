@@ -1,11 +1,18 @@
 # Project phase A prototype
 
-![Screen Shot](app/resources/Prototype.jpg?raw=true "Optional Title")
+![Screen Shot](app/resources/Prototype.jpg?raw=true "Screenshot of multiple server")
+
+## TODO for GSoC Duration
+
+- [] Server information in Menu and Tray
+- [] Server switching functionality in Menu and Tray
+- [] Better Add Server Window
+- [] Keyboard shortcuts to switch server
+- [] Work on any Mentor suggestions
 
 
 
-
-# Zulip Desktop Client 
+# Zulip Desktop Client
 [![Build Status](https://travis-ci.org/zulip/zulip-electron.svg?branch=master)](https://travis-ci.org/zulip/zulip-electron)
 [![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/zulip/zulip-electron?branch=master&svg=true)](https://ci.appveyor.com/project/akashnimare/zulip-electron/branch/master)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
