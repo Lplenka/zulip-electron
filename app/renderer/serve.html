@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" class="responsive desktop">
+<!--<![endif]-->
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Login - Zulip</title>
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen">
+</head>
+
+<body class="container-layout">
+	<div class="close" id="close-button">Close</div>
+	<section class="content">
+		<section class="server">
+			<div class="container">
+				<h1>Enter your Zulip Server URL</h1>
+				<form id="frm-signInForm" class="form-large" onsubmit="addServer(); return false">
+					<fieldset>
+						<div class="control-group control-required">
+							<div class="control-field">
+								<input type="text" id="url" autofocus="autofocus" spellcheck="false" placeholder="Server URL">
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="control-submit">
+								<button type="submit" id="main" class="btn-primary btn-large" value="Submit">Connect</button>
+							</div>
+						</div>
+						<p id="server-status"><p>
+					</fieldset>
+				</form>
+			</div>
+		</section>
+	</section>
+	<script src="js/index.js"></script>
+</body>
+
+</html>

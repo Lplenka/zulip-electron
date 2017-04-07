@@ -62,30 +62,37 @@ let staticURL;
  staticURL = 'file://' + path.join(__dirname, '../renderer', 'index.html');
 }
 
-function serverError(targetURL) {
-	if (targetURL.indexOf('localhost:') < 0 && data.domain) {
-		const req = https.request(targetURL + '/static/audio/zulip.ogg', res => {
-			console.log('Server StatusCode:', res.statusCode);
-			console.log('You are connected to:', res.req._headers.host);
-			if (res.statusCode >= 500 && res.statusCode <= 599) {
-				return dialog.showErrorBox('SERVER IS DOWN!', 'We are getting a ' + res.statusCode + ' error status from the server ' + res.req._headers.host + '. Please try again after some time or you may switch server.');
-			}
-		});
-		req.on('error', e => {
-			console.error(e);
-		});
-		req.end();
-	} else if (data.domain) {
-		const req = http.request(targetURL + '/static/audio/zulip.ogg', res => {
-			console.log('Server StatusCode:', res.statusCode);
-			console.log('You are connected to:', res.req._headers.host);
-		});
-		req.on('error', e => {
-			console.error(e);
-		});
-		req.end();
-	}
-}
+const targetURL = function () {
+	// always return the tab handling page
+	return staticURL;
+};
+
+
+//Will handle server errors in a different way now
+// function serverError(targetURL) {
+// 	if (targetURL.indexOf('localhost:') < 0 && data.domain) {
+// 		const req = https.request(targetURL + '/static/audio/zulip.ogg', res => {
+// 			console.log('Server StatusCode:', res.statusCode);
+// 			console.log('You are connected to:', res.req._headers.host);
+// 			if (res.statusCode >= 500 && res.statusCode <= 599) {
+// 				return dialog.showErrorBox('SERVER IS DOWN!', 'We are getting a ' + res.statusCode + ' error status from the server ' + res.req._headers.host + '. Please try again after some time or you may switch server.');
+// 			}
+// 		});
+// 		req.on('error', e => {
+// 			console.error(e);
+// 		});
+// 		req.end();
+// 	} else if (data.domain) {
+// 		const req = http.request(targetURL + '/static/audio/zulip.ogg', res => {
+// 			console.log('Server StatusCode:', res.statusCode);
+// 			console.log('You are connected to:', res.req._headers.host);
+// 		});
+// 		req.on('error', e => {
+// 			console.error(e);
+// 		});
+// 		req.end();
+// 	}
+// }
 
 function checkConnectivity() {
 	return dialog.showMessageBox({
@@ -188,7 +195,7 @@ function createMainWindow() {
 		win.show();
 	});
 
-	serverError(targetURL());
+	//serverError(targetURL());
 
 	win.loadURL(targetURL(), {
 		userAgent: isUserAgent + ' ' + win.webContents.getUserAgent()
@@ -332,7 +339,7 @@ ipc.on('new-domain', (e, domain) => {
 	} else {
 		mainWindow.webContents.send('destroytray');
 		mainWindow.loadURL(domain);
-		serverError(domain);
+		//serverError(domain);
 	}
 	targetLink = domain;
 });

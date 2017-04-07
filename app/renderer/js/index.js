@@ -15,9 +15,13 @@ console.log(teamLength);
 
 const serverWindow = remote.getCurrentWindow();
 
-document.getElementById('close-button').addEventListener('click', () => {
+let element = document.getElementById('close-button');
+
+if(element !== null) {
+element.addEventListener('click', () => {
 	serverWindow.close();
 });
+}
 
 console.log(teams[0]);
 
@@ -67,7 +71,7 @@ window.addServer = function () {
 					}], false);
 				        ipcRenderer.send('loadtabview');
 				} else {
-					document.getElementById('main').innerHTML = 'Switch';
+					document.getElementById('main').innerHTML = 'Connect';
 					document.getElementById('server-status').innerHTML = 'Not a valid Zulip Server.';
 				}
 			});

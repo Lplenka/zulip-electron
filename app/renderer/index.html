@@ -19,7 +19,7 @@
         <section class="server">
           <div class="container">
             <h1>Enter your Zulip Server URL</h1>
-            <form id="frm-signInForm" class="form-large" onsubmit="addDomain(); return false">
+            <form id="frm-signInForm" class="form-large" onsubmit="addServer(); return false">
               <fieldset>
                 <div class="control-group control-required">
                   <div class="control-field">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="control-group">
                   <div class="control-submit">
-                    <button type="submit" id="main" class="btn-primary btn-large" value="Submit" onclick="addDomain();">Connect</button>
+                    <button type="submit" id="main" class="btn-primary btn-large" value="Submit">Connect</button>
                   </div>
                 </div>
                 <p id="server-status"><p>
@@ -38,5 +38,6 @@
         </section>
       </section>
     </div>
+    <script src="js/index.js"></script>
   </body>
 </html>
