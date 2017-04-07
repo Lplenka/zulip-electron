@@ -1,6 +1,6 @@
 'use strict';
 const path = require('path');
-const {remote, ipcRenderer} = require('electron');
+const {remote,ipcRenderer} = require('electron');
 const {app} = require('electron').remote;
 const JsonDB = require('node-json-db');
 const request = require('request');
@@ -8,26 +8,39 @@ const request = require('request');
 
 const db = new JsonDB(app.getPath('userData') + '/domain.json', true, true);
 const data = db.getData('/');
-if(!data.teams) {db.push("/teams",[]);}
-let teams =db.getData('/teams');
-let teamLength =teams.length;
+if (!data.teams) {
+	db.push("/teams", []);
+}
+let teams = db.getData('/teams');
+let teamLength = teams.length;
 console.log(teamLength);
 
 const serverWindow = remote.getCurrentWindow();
 
 let element = document.getElementById('close-button');
 
-if(element !== null) {
-element.addEventListener('click', () => {
-	serverWindow.close();
-});
+if (element) {
+	element.addEventListener('click', () => {
+		serverWindow.close();
+	});
 }
+
+const checkServer = domain => {
+
+	for ( var i = 0; i < teamLength; i++) {
+		if (teams[i].domain === domain);
+		return false;
+		break;
+	}
+	return true;
+
+};
 
 console.log(teams[0]);
 
 console.log(data.teams);
 
-window.addServer = function () {
+window.addServer = function() {
 	console.log("I was called ");
 	document.getElementById('main').innerHTML = 'checking...';
 
@@ -45,13 +58,17 @@ window.addServer = function () {
 			request(checkDomain, (error, response) => {
 				if (!error && response.statusCode !== 404) {
 					document.getElementById('main').innerHTML = 'Connect';
-					db.push("/teams",[{
-					        title: 'Localhost',
-					        domain: domain,
-					        iconURL: 'undefined',
-					        active: (teams.length === 0)
+					if(checkServer(domain)) {
+					db.push("/teams", [{
+						title: 'Localhost',
+						domain: domain,
+						iconURL: 'undefined',
+						active: (teams.length === 0)
 					}], false);
-				        ipcRenderer.send('loadtabview');
+					ipcRenderer.send('loadtabview');
+				}else {
+					document.getElementById('server-status').innerHTML = 'This Server is already loaded in another tab';
+				}
 				} else {
 					document.getElementById('main').innerHTML = 'Connect';
 					document.getElementById('server-status').innerHTML = 'Not a valid Zulip Local Server.';
@@ -63,13 +80,13 @@ window.addServer = function () {
 			request(checkDomain, (error, response) => {
 				if (!error && response.statusCode !== 404) {
 					document.getElementById('main').innerHTML = 'Connect';
-					db.push("/teams",[{
-					        title: 'Zulip',
-					        domain: domain,
-					        iconURL: 'undefined',
-					        active: (teams.length === 0)
+					db.push("/teams", [{
+						title: 'Zulip',
+						domain: domain,
+						iconURL: 'undefined',
+						active: (teams.length === 0)
 					}], false);
-				        ipcRenderer.send('loadtabview');
+					ipcRenderer.send('loadtabview');
 				} else {
 					document.getElementById('main').innerHTML = 'Connect';
 					document.getElementById('server-status').innerHTML = 'Not a valid Zulip Server.';

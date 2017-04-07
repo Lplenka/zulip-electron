@@ -60,7 +60,8 @@ function createAboutWindow() {
 		center: true,
 		fullscreen: false,
 		fullscreenable: false,
-		resizable: false
+		resizable: false,
+		icon: iconPath()
 	});
 	const aboutURL = 'file://' + path.join(__dirname, '../renderer', 'about.html');
 	aboutwin.loadURL(aboutURL);
@@ -81,9 +82,11 @@ function createServerWindow() {
 		frame: false,
 		height: 600,
 		resizable: false,
+		title: 'Add Zulip Server',
 		width: 800,
 		show: false,
-		center: true
+		center: true,
+		icon: iconPath()
 	});
 	const serverURL = 'file://' + path.join(__dirname, '../renderer', 'serve.html');
 	serverwin.loadURL(serverURL);

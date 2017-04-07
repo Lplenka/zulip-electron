@@ -17,11 +17,6 @@ const tabGroup = new TabGroup();
 const teamsSubmenu = [];
 
 
-console.log(teams);
-
-
-console.log(teams[0]);
-
 window.onload = () => {
    const wview = document.querySelector('.etabs-views');
    const loader = document.querySelector('.loader');
@@ -40,7 +35,6 @@ window.onload = () => {
 
 $(document).ready( () => { $('.etabs-tabs').append('<div class="etabs-tab visible" id="plus"><span class="etabs-tab-icon"></span><span class="etabs-tab-title">&#65291;</span><span class="etabs-tab-buttons"></span></div>');
 $('#plus').on("click", () => {
-	console.log("I was clicked");
 ipcRenderer.send('addserver');
 });
 
@@ -124,5 +118,3 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	setFocusToActiveTab();
 }, false);
-
-console.log(tabsList);

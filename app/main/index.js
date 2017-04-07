@@ -356,6 +356,6 @@ ipc.on('loadtabview', (e) => {
 });
 
 ipc.on('addserver', (e) => {
-	console.log("I was called in main index ");
+
 addServers();
 });

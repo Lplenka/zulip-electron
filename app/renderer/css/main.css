@@ -257,6 +257,7 @@ body.container-layout header #logo {
     display: block
 }
 .content {
+    padding-top: 60px;
     padding-bottom: 40px;
     overflow: hidden
 }
