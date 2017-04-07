@@ -1,3 +1,10 @@
+# Project phase A prototype
+
+![Screen Shot](app/resources/Prototype.jpg?raw=true "Optional Title")
+
+
+
+
 # Zulip Desktop Client 
 [![Build Status](https://travis-ci.org/zulip/zulip-electron.svg?branch=master)](https://travis-ci.org/zulip/zulip-electron)
 [![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/zulip/zulip-electron?branch=master&svg=true)](https://ci.appveyor.com/project/akashnimare/zulip-electron/branch/master)
